@@ -4,46 +4,170 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Valentine 💖</title>
-<!-- Bootstrap CDN for styling -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
-/* BODY */
-body{margin:0;height:100vh;background:#f2f2f7;display:flex;justify-content:center;align-items:center;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;}
+body {
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:#f2f2f7;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+}
 
 /* CHAT */
-#chat{display:flex;flex-direction:column;width:100%;max-width:390px;height:100vh;padding:10px;background:#f2f2f7;overflow:hidden;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.2);}
-.header{text-align:center;font-weight:600;margin-bottom:10px;color:#111;font-size:1.2rem;}
-.chat-area{flex:1;overflow-y:auto;display:flex;flex-direction:column;}
-.bubble{max-width:70%;padding:10px 14px;border-radius:18px;margin:6px 0;line-height:1.3;animation:fadeIn .3s ease forwards;opacity:0;position:relative;word-wrap:break-word;}
-.me{align-self:flex-end;background:#d1d1d6;color:#000;border-bottom-right-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.2);}
-.her{align-self:flex-start;background:#0a84ff;color:#fff;border-bottom-left-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.2);}
-.time{font-size:.7rem;margin:2px 0;color:#555;}
-.typing{font-size:.9rem;color:#666;font-style:italic;margin:5px 0;}
+#chat{
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  max-width:390px;
+  height:100vh;
+  padding:10px;
+  background:#f2f2f7;
+  border-radius:10px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.2);
+}
+.header{
+  text-align:center;
+  font-weight:600;
+  margin-bottom:10px;
+  color:#111;
+  font-size:1.2rem;
+}
+.chat-area{
+  flex:1;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+}
+.bubble{
+  max-width:70%;
+  padding:10px 14px;
+  border-radius:18px;
+  margin:6px 0;
+  line-height:1.3;
+  opacity:0;
+  animation:fadeIn .3s ease forwards;
+  word-wrap:break-word;
+}
+.me{
+  align-self:flex-end;
+  background:#d1d1d6;
+  color:#000;
+  border-bottom-right-radius:4px;
+  box-shadow:0 1px 3px rgba(0,0,0,0.2);
+}
+.time{
+  font-size:.7rem;
+  margin:2px 0;
+  color:#555;
+}
 
 /* QUESTION CARD */
-#card{position:fixed;inset:0;display:none;justify-content:center;align-items:center;background:radial-gradient(circle at top,#ff9aa2,#ff4d6d);}
-.cardBox{background:rgba(255,255,255,.15);backdrop-filter:blur(14px);border-radius:24px;padding:28px;text-align:center;width:90%;max-width:360px;color:#fff;box-shadow:0 4px 15px rgba(0,0,0,0.3);}
-h1{font-size:1.8rem;margin-bottom:20px;}
-.buttons{position:relative;height:90px;}
-button{border:none;padding:12px 26px;border-radius:999px;font-size:1rem;cursor:pointer;transition:.3s ease;box-shadow:0 6px 15px rgba(0,0,0,0.3);}
-#yesBtn{background:linear-gradient(135deg,#ff758f,#ff4d6d);color:#fff;}
-#noBtn{position:absolute;background:#fff;color:#ff4d6d;left:50%;transform:translateX(-50%);}
+#card{
+  position:fixed;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  background:radial-gradient(circle at top,#ff9aa2,#ff4d6d);
+}
+.cardBox{
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(14px);
+  border-radius:24px;
+  padding:28px;
+  text-align:center;
+  width:90%;
+  max-width:360px;
+  color:#fff;
+  box-shadow:0 4px 15px rgba(0,0,0,0.3);
+}
+h1{
+  font-size:1.8rem;
+  margin-bottom:20px;
+}
+.buttons{
+  position:relative;
+  height:90px;
+}
+button{
+  border:none;
+  padding:12px 26px;
+  border-radius:999px;
+  font-size:1rem;
+  cursor:pointer;
+  transition:.3s ease;
+  box-shadow:0 6px 15px rgba(0,0,0,0.3);
+}
+#yesBtn{
+  background:linear-gradient(135deg,#ff758f,#ff4d6d);
+  color:#fff;
+}
+#noBtn{
+  position:absolute;
+  background:#fff;
+  color:#ff4d6d;
+  left:50%;
+  transform:translateX(-50%);
+}
 
-/* FINAL SCREENS */
-.screen{position:fixed;inset:0;display:none;justify-content:center;align-items:center;text-align:center;padding:30px;font-size:1.2rem;z-index:10;}
-#yesScreen{background:linear-gradient(135deg,#ff758f,#ff1e56);color:#fff;}
-#yesScreen h2{margin-bottom:15px;font-size:1.5rem;}
-#yesScreen p{margin-bottom:10px;font-size:1.1rem;font-weight:500;}
-#noScreen{background:linear-gradient(135deg,#111,#333);color:#fff;}
-#noScreen h2{font-size:3rem;margin-bottom:10px;}
+/* FINAL SCREEN */
+.screen{
+  position:fixed;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:30px;
+  font-size:1.2rem;
+  z-index:10;
+}
+#yesScreen{
+  background:linear-gradient(135deg,#ff758f,#ff1e56);
+  color:#fff;
+}
+#yesScreen h2{
+  margin-bottom:15px;
+  font-size:1.5rem;
+}
+#yesScreen p{
+  margin-bottom:10px;
+  font-size:1.1rem;
+  font-weight:500;
+}
 
 /* HEARTS */
-.heart{position:absolute;font-size:20px;animation:float 5s linear infinite;opacity:.8;}
-@keyframes float{to{transform:translateY(-120vh);opacity:0;}}
-@keyframes fadeIn{to{opacity:1;}}
+.heart{
+  position:absolute;
+  font-size:20px;
+  animation:float 5s linear infinite;
+  opacity:.8;
+}
+
+@keyframes float{
+  to{transform:translateY(-120vh);opacity:0;}
+}
+@keyframes fadeIn{
+  to{opacity:1;}
+}
 
 /* VIDEO POPUP */
-.videoPop{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:80%;max-width:350px;border-radius:12px;z-index:50;display:none;box-shadow:0 8px 25px rgba(0,0,0,0.5);}
+.videoPop{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:80%;
+  max-width:350px;
+  border-radius:12px;
+  z-index:50;
+  display:none;
+  box-shadow:0 8px 25px rgba(0,0,0,0.5);
+}
 </style>
 </head>
 <body>
@@ -75,14 +199,6 @@ button{border:none;padding:12px 26px;border-radius:999px;font-size:1rem;cursor:p
   </div>
 </div>
 
-<!-- NO SCREEN -->
-<div id="noScreen" class="screen">
-  <div>
-    <h2>🥺</h2>
-    <p>I understand…<br>Maybe in another universe, Sophia and Daniel would be something more.</p>
-  </div>
-</div>
-
 <!-- Video popup -->
 <video id="memeVideo" class="videoPop" autoplay muted></video>
 
@@ -91,33 +207,32 @@ button{border:none;padding:12px 26px;border-radius:999px;font-size:1rem;cursor:p
 <audio id="yesSound" src="media/yes.mp3"></audio>
 
 <script>
-// CHAT FLOW
+// CHAT FLOW (Daniel is the only one texting)
 const chatArea=document.getElementById("chatArea");
 const chat=document.getElementById("chat");
 const card=document.getElementById("card");
 const yesScreen=document.getElementById("yesScreen");
-const noScreen=document.getElementById("noScreen");
 const yesBtn=document.getElementById("yesBtn");
 const noBtn=document.getElementById("noBtn");
 const memeVideo=document.getElementById("memeVideo");
 const sadSound=document.getElementById("sadSound");
 const yesSound=document.getElementById("yesSound");
 
-let yesScale=1,noClickCount=0;
+let yesScale=1;
+let noClickCount=0;
 
-// Chat messages
+// Daniel's messages
 const messages=[
-  {from:"her", text:"Hey Daniel 😊"},
-  {from:"me", text:"Hi Sophia"},
-  {from:"her", text:"What's up?"},
-  {from:"me", text:"I’ve been wanting to ask you something…"},
-  {from:"her", text:"Oh really?"},
-  {from:"me", text:"Can I ask you properly if you’ll be my Valentine?"}
+  "Hi Sophia 😊",
+  "I’ve been thinking about you…",
+  "I hope this isn’t too forward…",
+  "But I really wanted to ask you something important",
+  "Will you be my Valentine?"
 ];
 
-function addMessage(from,text){
+function addMessage(text){
   const bubble=document.createElement("div");
-  bubble.className="bubble "+(from==="me"?"me":"her");
+  bubble.className="bubble me";
   bubble.textContent=text;
   chatArea.appendChild(bubble);
   const time=document.createElement("div");
@@ -127,37 +242,17 @@ function addMessage(from,text){
   chatArea.scrollTop=chatArea.scrollHeight;
 }
 
-function showTyping(text,from){
-  return new Promise(resolve=>{
-    const tdiv=document.createElement("div");
-    tdiv.className="typing";
-    tdiv.textContent="Sophia is typing...";
-    chatArea.appendChild(tdiv);
-    chatArea.scrollTop=chatArea.scrollHeight;
-    setTimeout(()=>{
-      tdiv.remove();
-      addMessage(from,text);
-      resolve();
-    },1200);
-  });
-}
-
 async function startChat(){
   for(let i=0;i<messages.length;i++){
-    const msg=messages[i];
-    if(msg.from==="her"){
-      await showTyping(msg.text,msg.from);
-    } else {
-      addMessage(msg.from,msg.text);
-    }
-    await new Promise(r=>setTimeout(r,600));
+    addMessage(messages[i]);
+    await new Promise(r=>setTimeout(r,800));
   }
   setTimeout(()=>{chat.style.display="none";card.style.display="flex"},800);
 }
 
 startChat();
 
-// NO BUTTON
+// NO button behavior
 function moveNo(){
   const x=Math.random()*(window.innerWidth-120);
   const y=Math.random()*(window.innerHeight-120);
@@ -168,7 +263,7 @@ function moveNo(){
   yesBtn.style.transform=`scale(${yesScale})`;
 
   noClickCount++;
-  if(noClickCount%3===0){ // every 3 clicks show sad video
+  if(noClickCount%3===0){
     memeVideo.src='media/sad.mp4';
     memeVideo.style.display='block';
     memeVideo.play();
@@ -183,7 +278,7 @@ noBtn.addEventListener("mouseover",moveNo);
 noBtn.addEventListener("touchstart",moveNo);
 noBtn.addEventListener("click",moveNo);
 
-// YES BUTTON
+// YES button
 yesBtn.addEventListener("click",()=>{
   yesScreen.style.display="flex";
   card.style.display="none";
