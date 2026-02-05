@@ -3,106 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Sophia 💖</title>
-
+<title>Valentine 💖</title>
 <style>
-*{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-body{
-  margin:0;height:100vh;background:#000;color:#fff;
-  display:flex;justify-content:center;align-items:center;
-  overflow:hidden;
-}
+*{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;padding:0;}
+body{height:100vh;overflow:hidden;background:#f2f2f7;display:flex;justify-content:center;align-items:center;}
 
-/* LOADING SCREEN */
-#loading{
-  position:fixed;inset:0;background:#000;
-  display:flex;flex-direction:column;justify-content:center;align-items:center;
-  z-index:100;
-}
-.loader{
-  width:50px;height:50px;border:3px solid #333;border-top:3px solid #ff4d6d;
-  border-radius:50%;animation:spin 1s linear infinite;margin-bottom:15px;
-}
-@keyframes spin{to{transform:rotate(360deg)}}
+/* CHAT */
+#chat{display:flex;flex-direction:column;width:100%;max-width:390px;height:100vh;padding:10px;background:#f2f2f7;overflow:hidden;}
+.header{text-align:center;font-weight:600;margin-bottom:10px;color:#111;}
+.chat-area{flex:1;overflow-y:auto;display:flex;flex-direction:column;}
+.bubble{max-width:70%;padding:10px 14px;border-radius:18px;margin:6px 0;line-height:1.3;animation:fadeIn .3s ease forwards;opacity:0;}
+.me{align-self:flex-end;background:#d1d1d6;color:#000;border-bottom-right-radius:4px;}
+.her{align-self:flex-start;background:#0a84ff;color:#fff;border-bottom-left-radius:4px;}
+.time{font-size:.7rem;margin:2px 0;}
+.time.me{color:#555;}
+.time.her{color:#0af;}
+.typing{font-size:.9rem;color:#666;font-style:italic;margin:5px 0;}
 
-/* iMESSAGE CHAT */
-#chat{
-  width:100%;max-width:390px;height:100vh;
-  display:none;flex-direction:column;
-  padding:14px;background:#f2f2f7;color:#000;
-}
-.header{
-  text-align:center;font-weight:600;margin-bottom:10px;color:#111;
-}
-.chat-area{
-  flex:1;overflow-y:auto;display:flex;flex-direction:column;
-}
-.bubble{
-  max-width:70%;padding:10px 14px;border-radius:18px;margin:6px 0;
-  font-size:1rem;line-height:1.3;animation:fadeIn .3s ease forwards;
-  opacity:0;
-}
-.me{align-self:flex-end;background:#0a84ff;color:#fff;border-bottom-right-radius:4px}
-.her{align-self:flex-start;background:#e5e5ea;color:#000;border-bottom-left-radius:4px}
-.time{
-  font-size:.7rem;color:#888;margin:2px 0;
-}
-.typing{
-  font-size:.9rem;color:#666;margin:5px 0;font-style:italic;
-}
-@keyframes fadeIn{to{opacity:1}}
-
-/* QUESTION SCREEN */
-#card{
-  position:fixed;inset:0;display:none;justify-content:center;align-items:center;
-  background:radial-gradient(circle at top,#ff9aa2,#ff4d6d);
-}
-.cardBox{
-  background:rgba(255,255,255,.15);backdrop-filter:blur(16px);
-  border-radius:24px;padding:28px;text-align:center;
-  width:90%;max-width:360px;color:#fff;
-}
-h1{font-size:1.8rem;margin-bottom:20px}
-.buttons{position:relative;height:90px}
-button{
-  border:none;padding:12px 26px;border-radius:999px;font-size:1rem;
-  cursor:pointer;transition:.2s ease;
-}
-#yesBtn{
-  background:linear-gradient(135deg,#ff758f,#ff4d6d);
-  color:#fff;box-shadow:0 10px 25px rgba(255,77,109,.6);
-}
-#noBtn{
-  position:absolute;background:#fff;color:#ff4d6d;left:50%;
-  transform:translateX(-50%);
-}
+/* QUESTION CARD */
+#card{position:fixed;inset:0;display:none;justify-content:center;align-items:center;background:radial-gradient(circle at top,#ff9aa2,#ff4d6d);}
+.cardBox{background:rgba(255,255,255,.15);backdrop-filter:blur(14px);border-radius:24px;padding:28px;text-align:center;width:90%;max-width:360px;color:#fff;}
+h1{font-size:1.8rem;margin-bottom:20px;}
+.buttons{position:relative;height:90px;}
+button{border:none;padding:12px 26px;border-radius:999px;font-size:1rem;cursor:pointer;transition:.2s ease;}
+#yesBtn{background:linear-gradient(135deg,#ff758f,#ff4d6d);color:#fff;box-shadow:0 10px 25px rgba(255,77,109,.6);}
+#noBtn{position:absolute;background:#fff;color:#ff4d6d;left:50%;transform:translateX(-50%);}
 
 /* FINAL SCREENS */
-.screen{
-  position:fixed;inset:0;display:none;justify-content:center;align-items:center;
-  text-align:center;padding:30px;font-size:1.2rem;z-index:10;
-}
-#yesScreen{
-  background:linear-gradient(135deg,#ff758f,#ff1e56);
-}
-#noScreen{
-  background:linear-gradient(135deg,#111,#333);
-}
+.screen{position:fixed;inset:0;display:none;justify-content:center;align-items:center;text-align:center;padding:30px;font-size:1.2rem;z-index:10;}
+#yesScreen{background:linear-gradient(135deg,#ff758f,#ff1e56);color:#fff;}
+#yesScreen h2{margin-bottom:10px;}
+#yesScreen p{margin-bottom:5px;font-weight:600;font-size:1.1rem;}
+#noScreen{background:linear-gradient(135deg,#111,#333);color:#fff;}
 
-/* floating hearts */
-.heart{
-  position:absolute;font-size:20px;animation:float 5s linear infinite;opacity:.8
-}
-@keyframes float{to{transform:translateY(-120vh);opacity:0}}
+/* HEARTS */
+.heart{position:absolute;font-size:20px;animation:float 5s linear infinite;opacity:.8;}
+@keyframes float{to{transform:translateY(-120vh);opacity:0;}}
+@keyframes fadeIn{to{opacity:1;}}
 </style>
 </head>
 <body>
-
-<!-- LOADING -->
-<div id="loading">
-  <div class="loader"></div>
-  <div>Preparing something special for Sophia...</div>
-</div>
 
 <!-- CHAT -->
 <div id="chat">
@@ -124,11 +64,10 @@ button{
 <!-- YES SCREEN -->
 <div id="yesScreen" class="screen">
   <div>
-    <h2>💘 Sophia & Daniel 💘</h2>
-    <p id="loveLetter"></p>
-    <p style="margin-top:20px;font-size:1rem;opacity:.8">
-      📸 Screenshot this moment.
-    </p>
+    <h2>💌 Invitation 💌</h2>
+    <p>Awesome! Since you said yes, I guess that makes you stuck with me as my Valentine 💖</p>
+    <p>Save the Date: February 15, 2026</p>
+    <p style="opacity:.8;font-size:1rem;">📸 Screenshot so you won't forget</p>
   </div>
 </div>
 
@@ -136,41 +75,41 @@ button{
 <div id="noScreen" class="screen">
   <div>
     <h2>🥺</h2>
-    <p>
-      I understand…<br><br>
-      Maybe in another universe,<br>
-      Sophia and Daniel would be something more.
-    </p>
+    <p>I understand…<br>Maybe in another universe, Sophia and Daniel would be something more.</p>
   </div>
 </div>
 
-<audio id="bgm" loop>
-  <source src="https://cdn.pixabay.com/audio/2022/10/03/audio_9c2c2b3c6a.mp3">
-</audio>
+<!-- Meme placeholder -->
+<img id="memePop" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:200px;display:none;z-index:50;"/>
+
+<!-- Sounds -->
+<audio id="sadSound" src="media/sad.mp3"></audio>
+<audio id="yesSound" src="media/yes.mp3"></audio>
 
 <script>
-const loading = document.getElementById("loading");
-const chat = document.getElementById("chat");
-const chatArea = document.getElementById("chatArea");
-const card = document.getElementById("card");
-const yesScreen = document.getElementById("yesScreen");
-const noScreen = document.getElementById("noScreen");
-const yesBtn = document.getElementById("yesBtn");
-const noBtn = document.getElementById("noBtn");
-const bgm = document.getElementById("bgm");
-const loveLetter = document.getElementById("loveLetter");
+// CHAT FLOW
+const chatArea=document.getElementById("chatArea");
+const chat=document.getElementById("chat");
+const card=document.getElementById("card");
+const yesScreen=document.getElementById("yesScreen");
+const noScreen=document.getElementById("noScreen");
+const yesBtn=document.getElementById("yesBtn");
+const noBtn=document.getElementById("noBtn");
+const memePop=document.getElementById("memePop");
+const sadSound=document.getElementById("sadSound");
+const yesSound=document.getElementById("yesSound");
 
-let yesScale=1,noScale=1;
+let yesScale=1;
+let noClickCount=0;
 
-// CHAT SCRIPT (iMessage style)
-const messages = [
-  {from:"me", text:"Hey Sophia"},
-  {from:"her", text:"Hi Daniel 😊"},
-  {from:"me", text:"Can I tell you something?"},
-  {from:"her", text:"Sure"},
-  {from:"me", text:"I’ve been thinking about this for a while..."},
-  {from:"me", text:"You make everything feel lighter when you’re around."},
-  {from:"me", text:"So I just want to ask you properly."}
+// Chat messages
+const messages=[
+  {from:"her", text:"Hey Daniel 😊"},
+  {from:"me", text:"Hi Sophia"},
+  {from:"her", text:"What's up?"},
+  {from:"me", text:"I’ve been wanting to ask you something…"},
+  {from:"her", text:"Oh really?"},
+  {from:"me", text:"Can I ask you properly if you’ll be my Valentine?"}
 ];
 
 function addMessage(from,text){
@@ -178,44 +117,43 @@ function addMessage(from,text){
   bubble.className="bubble "+(from==="me"?"me":"her");
   bubble.textContent=text;
   chatArea.appendChild(bubble);
-
   const time=document.createElement("div");
   time.className="time "+(from==="me"?"me":"her");
   time.textContent=new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
   chatArea.appendChild(time);
-
   chatArea.scrollTop=chatArea.scrollHeight;
 }
 
-function showTyping(){
-  const typing=document.createElement("div");
-  typing.className="typing";
-  typing.textContent="Sophia is typing...";
-  chatArea.appendChild(typing);
-  chatArea.scrollTop=chatArea.scrollHeight;
-  return typing;
+function showTyping(text,from){
+  return new Promise(resolve=>{
+    const tdiv=document.createElement("div");
+    tdiv.className="typing";
+    tdiv.textContent=text;
+    chatArea.appendChild(tdiv);
+    chatArea.scrollTop=chatArea.scrollHeight;
+    setTimeout(()=>{
+      tdiv.remove();
+      addMessage(from,text);
+      resolve();
+    },1200);
+  });
 }
 
 async function startChat(){
   for(let i=0;i<messages.length;i++){
     const msg=messages[i];
     if(msg.from==="her"){
-      const t=showTyping();
-      await new Promise(r=>setTimeout(r,1200));
-      t.remove();
+      await showTyping(msg.text,msg.from);
+    } else {
+      addMessage(msg.from,msg.text);
     }
-    addMessage(msg.from,msg.text);
-    await new Promise(r=>setTimeout(r,700));
+    await new Promise(r=>setTimeout(r,600));
   }
-  setTimeout(()=>{chat.style.display="none";card.style.display="flex"},1000);
+  setTimeout(()=>{chat.style.display="none";card.style.display="flex"},800);
 }
 
-// LOADING → CHAT
-setTimeout(()=>{
-  loading.style.display="none";
-  chat.style.display="flex";
-  startChat();
-},2500);
+// START CHAT
+startChat();
 
 // NO BUTTON BEHAVIOR
 function moveNo(){
@@ -224,38 +162,29 @@ function moveNo(){
   noBtn.style.left=x+"px";
   noBtn.style.top=y+"px";
 
-  noScale-=.08;if(noScale<.4)noScale=.4;
-  yesScale+=.12;
-  noBtn.style.transform=`scale(${noScale})`;
+  yesScale+=0.15;
   yesBtn.style.transform=`scale(${yesScale})`;
+
+  noClickCount++;
+  if(noClickCount%3===0){ // every 3 clicks show sad
+    memePop.src='media/sad-meme.gif';
+    memePop.style.display='block';
+    sadSound.play();
+    setTimeout(()=>memePop.style.display='none',3000);
+  }
 }
 noBtn.addEventListener("mouseover",moveNo);
 noBtn.addEventListener("touchstart",moveNo);
+noBtn.addEventListener("click",moveNo);
 
-// CLICK NO → SAD CINEMATIC
-noBtn.addEventListener("click",()=>{
-  card.style.display="none";
-  noScreen.style.display="flex";
-});
-
-// CLICK YES → LOVE LETTER
+// YES BUTTON CLICK
 yesBtn.addEventListener("click",()=>{
-  bgm.play();
-  card.style.display="none";
   yesScreen.style.display="flex";
-
-  loveLetter.innerHTML = `
-    Sophia,<br><br>
-    From the moment I started talking to you,
-    I felt something different.<br><br>
-    You have this quiet way of making everything feel calm and beautiful.
-    I don’t know where this will lead,
-    but I know I want to walk there with you.<br><br>
-    — Daniel 💖
-  `;
+  card.style.display="none";
+  yesSound.play();
 });
 
-// floating hearts
+// FLOATING HEARTS
 function heart(){
   const h=document.createElement("div");
   h.className="heart";
@@ -268,6 +197,5 @@ function heart(){
 }
 setInterval(heart,400);
 </script>
-
 </body>
 </html>
